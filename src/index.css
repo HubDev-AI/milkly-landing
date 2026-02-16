@@ -1,0 +1,451 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+@config "../tailwind.config.js";
+
+@import "tailwindcss";
+
+/* Milkly Design System - Dark Theme */
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 99%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 25 95% 53%;
+    --sidebar: 0 0% 98%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 10% 3.9%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 240 5.9% 90%;
+    --sidebar-ring: 25 95% 53%;
+    --chart-1: 25 95% 53%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 280 65% 60%;
+    --chart-4: 160 60% 45%;
+    --chart-5: 350 65% 55%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* Footer gradient effect - Light Mode */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/noise.svg');
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 9998;
+    mix-blend-mode: multiply;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: radial-gradient(
+      ellipse 100% 100% at 50% 100%,
+      hsl(25 95% 53% / 0.08) 0%,
+      hsl(25 95% 53% / 0.02) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  html {
+    scroll-padding-top: 100px;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    @apply text-foreground;
+  }
+}
+
+@layer components {
+  /* Milkly brand text */
+  .milkly-logo {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* Dark gradient backgrounds */
+  .cream-gradient {
+    background: linear-gradient(
+      180deg,
+      hsl(240 6% 4%) 0%,
+      hsl(240 6% 6%) 50%,
+      hsl(240 5% 5%) 100%
+    );
+  }
+
+  .cream-gradient-subtle {
+    background: linear-gradient(
+      180deg,
+      hsl(240 6% 5%) 0%,
+      hsl(240 5% 4%) 100%
+    );
+  }
+
+  /* Subtle glow effect */
+  .milk-swirl {
+    background: radial-gradient(
+      ellipse at 30% 20%,
+      hsl(183 54% 50% / 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 70% 80%,
+      hsl(38 92% 50% / 0.03) 0%,
+      transparent 40%
+    );
+  }
+
+  /* Primary button */
+  .btn-espresso {
+    @apply bg-primary text-primary-foreground
+           hover:bg-primary/90
+           transition-all duration-200 ease-out
+           shadow-sm hover:shadow-md;
+  }
+
+  /* Dark card with subtle glow */
+  .cream-card {
+    @apply bg-card rounded-xl border border-border/50 transition-all duration-300;
+    box-shadow: 0 1px 2px hsl(0 0% 0% / 0.2), 0 4px 12px hsl(0 0% 0% / 0.15);
+  }
+
+  .cream-card:hover {
+    @apply border-primary/30;
+    box-shadow: 0 2px 4px hsl(0 0% 0% / 0.25), 0 8px 20px hsl(0 0% 0% / 0.2), 0 0 20px hsl(183 54% 50% / 0.1);
+  }
+
+  /* Category pills - dark mode versions */
+  .pill-news {
+    @apply bg-blue-500/15 text-blue-400 border-blue-500/30;
+  }
+
+  .pill-videos {
+    @apply bg-red-500/15 text-red-400 border-red-500/30;
+  }
+
+  .pill-social {
+    @apply bg-purple-500/15 text-purple-400 border-purple-500/30;
+  }
+
+  /* Floating action button */
+  .fab {
+    @apply fixed bottom-6 right-6 z-50
+           bg-primary text-primary-foreground
+           rounded-full shadow-lg
+           hover:shadow-xl hover:scale-105
+           transition-all duration-200 ease-out;
+    box-shadow: 0 4px 20px hsl(183 54% 50% / 0.25);
+  }
+
+  .fab:hover {
+    box-shadow: 0 6px 28px hsl(183 54% 50% / 0.35);
+  }
+
+  /* Safe area for mobile */
+  .safe-area-bottom {
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+
+  .safe-area-top {
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(183 54% 50% / 0.2);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px hsl(38 92% 50% / 0.2);
+  }
+
+  /* Glass effect - Light Mode */
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm;
+  }
+}
+
+@layer utilities {
+  /* Fade in animation */
+  @keyframes milk-pour {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-milk-pour {
+    animation: milk-pour 0.4s ease-out;
+  }
+
+  /* Rise animation */
+  @keyframes cream-rise {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-cream-rise {
+    animation: cream-rise 0.5s ease-out;
+  }
+
+  /* Stagger children animation */
+  .stagger-children > * {
+    animation: cream-rise 0.4s ease-out backwards;
+  }
+
+  .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 50ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 100ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 150ms; }
+  .stagger-children > *:nth-child(5) { animation-delay: 200ms; }
+  .stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+  .stagger-children > *:nth-child(7) { animation-delay: 300ms; }
+  .stagger-children > *:nth-child(8) { animation-delay: 350ms; }
+
+  /* Pulse animation */
+  @keyframes swirl {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-swirl {
+    animation: swirl 1.5s linear infinite;
+  }
+
+  /* Glow pulse for selected items */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(183 54% 50% / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 8px hsl(183 54% 50% / 0);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Hide scrollbar */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Text gradient - orange for light mode */
+  .text-gradient-espresso {
+    background: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(35 100% 55%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shimmer effect for loading states */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(240 4% 12%) 0%,
+      hsl(240 4% 18%) 50%,
+      hsl(240 4% 12%) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Subtle border glow on focus */
+  .focus-glow:focus {
+    @apply ring-2 ring-primary/50 ring-offset-2 ring-offset-background;
+  }
+
+  /* Custom scrollbar styling */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(183 54% 50% / 0.3) transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(240 4% 20%);
+    border-radius: 3px;
+    transition: background 0.2s ease;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(183 54% 50% / 0.5);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+/* Global scrollbar styling - Hidden for immersion */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: hsl(240 4% 20%);
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: hsl(25 95% 53% / 0.5);
+}
+
+/* Selection color */
+::selection {
+  background-color: hsl(25 95% 53% / 0.3);
+  color: inherit;
+}
